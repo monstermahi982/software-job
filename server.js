@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose'
 import cors from 'cors'
 
-import { userRoutes, companyRoutes } from './Router/';
+import { userRoutes, companyRoutes, jobRoutes } from './Router/';
 import { DB_URL, PORT } from './Config'
 import { errorHandler } from './Middleware';
 
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/user', userRoutes)
 app.use('/api/company', companyRoutes)
+app.use('/api/jobs', jobRoutes)
 
 app.use(errorHandler)
 
