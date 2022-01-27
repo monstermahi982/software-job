@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { Company } from '../Model';
+import { Jwt } from '../Service'
 
 const companyController = {
 
@@ -57,17 +58,18 @@ const companyController = {
             name, email, phone, location, domain, size, password
         });
 
-        let result;
+        let token;
 
         try {
 
-            result = await new_company.save();
+            const result = await new_company.save();
+            token = Jwt.sign({ name: result.name, id: result._id });
 
         } catch (error) {
             return next(error);
         }
 
-        res.json(result);
+        res.json(token);
     },
 
     async updateCompany(req, res, next) {
@@ -119,6 +121,45 @@ const companyController = {
 
         res.json(company);
     },
+
+    async loginCompany(req, res, next) {
+
+        const companySchema = Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().required(),
+        })
+
+        const { error } = await companySchema.validate(req.body);
+
+        if (error) {
+            return next(error);
+        }
+
+        const { email, password } = req.body;
+
+        let token;
+
+        try {
+
+            const company = await Company.findOne({ email });
+
+            if (company) {
+                if (company.password === password) {
+                    token = Jwt.sign({ name: company.name, id: company._id });
+                } else {
+                    return res.json({ data: "password not matched" });
+                }
+            } else {
+                return res.json({ data: "account not found" });
+            }
+
+        } catch (error) {
+            return next(error);
+        }
+
+        res.json(token);
+
+    }
 }
 
 export default companyController;
