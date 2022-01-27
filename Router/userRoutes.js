@@ -11,6 +11,8 @@ router.get('/:id', userController.getOneUser);
 
 router.post('/', userController.addUser);
 
+router.post('/login', userController.userLogin);
+
 router.put('/:id', userController.updateUser);
 
 router.delete('/:id', userController.deleteUser);

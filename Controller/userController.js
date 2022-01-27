@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { User } from '../Model';
+import { Jwt } from '../Service'
 
 const userController = {
 
@@ -54,17 +55,18 @@ const userController = {
             name, email, phone, password
         });
 
-        let result;
+        let token;
 
         try {
 
-            result = await new_user.save();
+            const result = await new_user.save();
+            token = Jwt.sign({ name: result.name, id: result._id });
 
         } catch (error) {
             return next(error);
         }
 
-        res.json(result);
+        res.json(token);
     },
 
     async updateUser(req, res, next) {
@@ -113,6 +115,45 @@ const userController = {
 
         res.json(user);
     },
+
+    async userLogin(req, res, next) {
+
+        const userSchema = Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().required()
+        })
+
+        const { error } = await userSchema.validate(req.body);
+
+        if (error) {
+            return next(error);
+        }
+
+        const { email, password } = req.body;
+
+        let token;
+
+        try {
+
+            const user = await User.findOne({ email });
+
+            if (user) {
+                if (password === user.password) {
+                    token = Jwt.sign({ name: user.name, id: user._id })
+                } else {
+                    return res.json({ data: "password not matched" });
+                }
+            } else {
+                return res.json({ data: "account not found" });
+            }
+
+        } catch (error) {
+            return next(error);
+        }
+
+        res.json(token);
+
+    }
 }
 
 export default userController;
