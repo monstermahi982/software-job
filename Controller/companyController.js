@@ -10,7 +10,13 @@ const companyController = {
 
         try {
 
-            companies = await Company.find();
+            if (Object.keys(req.query).length !== 0) {
+                console.log("dsad");
+                companies = await Company.find().skip(req.query.page * 5 - 5).limit(5);
+            } else {
+                console.log("dsade");
+                companies = await Company.find().sort({ createdAt: -1 });
+            }
 
         } catch (error) {
             return next(error);

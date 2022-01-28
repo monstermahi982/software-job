@@ -10,7 +10,11 @@ const userController = {
 
         try {
 
-            users = await User.find().select('-updatedAt -__v').sort({ _id: -1 });
+            if (Object.keys(req.query).length !== 0) {
+                users = await User.find().select('-updatedAt -__v').skip(req.query.page * 5 - 5).limit(5);
+            } else {
+                users = await User.find().select('-updatedAt -__v').sort({ createdAt: -1 });
+            }
 
         } catch (error) {
             return next(error);
