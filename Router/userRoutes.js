@@ -1,5 +1,6 @@
 import express from 'express';
 import { userController } from '../Controller'
+import { auth } from '../Middleware'
 
 
 const router = express.Router();
@@ -15,6 +16,6 @@ router.post('/login', userController.userLogin);
 
 router.put('/:id', userController.updateUser);
 
-router.delete('/:id', userController.deleteUser);
+router.delete('/:id', auth, userController.deleteUser);
 
 export default router;
