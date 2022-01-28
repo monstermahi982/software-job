@@ -38,13 +38,32 @@ const applicationController = {
         res.json(applications);
     },
 
+    // get application according to job id
     async getJobApplication(req, res, next) {
 
-        let applications;
+        let applications = {};
 
         try {
 
-            applications = await Application.find({ job_id: req.params.id });
+            const appl = await Application.find({ job_id: req.params.id });
+
+            const { job_id, status, createdAt } = appl[0];
+            const job = await Job.findById({ _id: job_id }).select('-updatedAt -__v -createdAt');
+
+            const user_array = [];
+
+            for (let i = 0; i < appl.length; i++) {
+
+                const { user_id } = appl[i];
+
+                const user = await User.findById({ _id: user_id }).select('-updatedAt -__v -createdAt -password -is_active');
+
+                user_array.push(user);
+            }
+
+            applications = {
+                job, user_array, status, createdAt
+            }
 
         } catch (error) {
             return next(error);
