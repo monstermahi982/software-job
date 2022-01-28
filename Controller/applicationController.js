@@ -3,13 +3,33 @@ import { Application } from '../Model';
 
 const applicationController = {
 
+    // get application according to user id
     async getUserApplication(req, res, next) {
 
-        let applications;
+        let applications = [];
 
         try {
 
-            applications = await Application.find({ user_id: req.params.id });
+            const appl = await Application.find({ user_id: req.params.id });
+
+
+            for (let i = 0; i < appl.length; i++) {
+
+                const { _id, user_id, company_id, job_id, status, createdAt } = appl[i];
+
+                const job = await Job.findById({ _id: job_id }).select('-updatedAt -__v -createdAt');
+                const company = await Company.findById({ _id: company_id }).select('-updatedAt -__v -createdAt -size -email -password -is_active -_id');
+                const one_app = {
+                    _id,
+                    user_id,
+                    status,
+                    company,
+                    job,
+                    createdAt
+                }
+
+                applications.push(one_app);
+            }
 
         } catch (error) {
             return next(error);
