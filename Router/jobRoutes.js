@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/', jobController.getAllJobs);
 
+router.get('/search', jobController.jobSearch);
+
 router.get('/:id', jobController.getOneJob);
 
 router.post('/', jobController.addJob);

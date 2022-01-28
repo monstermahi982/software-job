@@ -82,6 +82,24 @@ const jobController = {
 
         res.json(job);
     },
+
+    async jobSearch(req, res, next) {
+        let jobs;
+
+        try {
+
+            if (Object.keys(req.query).length === 0) {
+                jobs = await Job.find();
+            } else {
+                jobs = await Job.find({ name: { $regex: req.query.name } });
+            }
+
+        } catch (error) {
+            return next(error);
+        }
+
+        res.json(jobs);
+    }
 }
 
 export default jobController;
