@@ -38,8 +38,6 @@ const jobController = {
         const jobSchema = Joi.object({
             name: Joi.string().max(30).min(3).required(),
             company_id: Joi.string().required(),
-            company_name: Joi.string().required(),
-            company_location: Joi.string().required(),
             experience: Joi.number().required(),
             work_type: Joi.string().required(),
             salary: Joi.number().required()
@@ -51,10 +49,10 @@ const jobController = {
             return next(error);
         }
 
-        const { name, company_id, company_name, company_location, experience, work_type, salary } = req.body;
+        const { name, company_id, experience, work_type, salary } = req.body;
 
         const new_job = new Job({
-            name, company_id, company_name, company_location, experience, work_type, salary
+            name, company_id, experience, work_type, salary
         });
 
         let result;
