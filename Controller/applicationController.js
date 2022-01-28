@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Application } from '../Model';
+import { Application, Company, Job, User } from '../Model';
 
 const applicationController = {
 
