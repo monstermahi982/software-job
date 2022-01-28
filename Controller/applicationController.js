@@ -72,19 +72,20 @@ const applicationController = {
         res.json(applications);
     },
 
+    // get jobs according to company id 
     async getCompanyApplication(req, res, next) {
 
-        let applications;
+        let job_posts = [];
 
         try {
 
-            applications = await Application.find({ company_id: req.params.id });
+            job_posts = await Job.find({ company_id: req.params.id }).select('-updatedAt -__v -company_id');
 
         } catch (error) {
             return next(error);
         }
 
-        res.json(applications);
+        res.json(job_posts);
     },
 
     async addApplication(req, res, next) {
