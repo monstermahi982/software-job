@@ -99,6 +99,34 @@ const jobController = {
         }
 
         res.json(jobs);
+    },
+
+    async blockJob(req, res, next) {
+        let job;
+        try {
+
+            job = await Job.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: false
+            }, { new: true })
+
+        } catch (error) {
+            return next(error);
+        }
+        res.json(job);
+    },
+
+    async unblockJob(req, res, next) {
+        let job;
+        try {
+
+            job = await Job.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: true
+            }, { new: true })
+
+        } catch (error) {
+            return next(error);
+        }
+        res.json(job);
     }
 }
 

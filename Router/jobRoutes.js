@@ -11,6 +11,10 @@ router.get('/:id', jobController.getOneJob);
 
 router.post('/', jobController.addJob);
 
+router.put('/block/:id', jobController.blockJob);
+
+router.put('/unblock/:id', jobController.unblockJob);
+
 router.delete('/:id', jobController.deleteJob);
 
 export default router;
