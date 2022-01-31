@@ -165,7 +165,43 @@ const companyController = {
 
         res.json(token);
 
-    }
+    },
+
+    async blockCompany(req, res, next) {
+
+        let company;
+
+        try {
+
+            company = await Company.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: false
+            }, { new: true });
+
+        } catch (error) {
+            return next(error);
+        }
+
+        res.json(company);
+
+    },
+
+    async unblockCompany(req, res, next) {
+
+        let company;
+
+        try {
+
+            company = await Company.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: true
+            }, { new: true });
+
+        } catch (error) {
+            return next(error);
+        }
+
+        res.json(company);
+
+    },
 }
 
 export default companyController;
