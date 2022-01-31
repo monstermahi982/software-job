@@ -157,7 +157,35 @@ const userController = {
 
         res.json(token);
 
-    }
+    },
+
+    async blockUser(req, res, next) {
+        let user;
+        try {
+
+            user = await User.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: false
+            }, { new: true })
+
+        } catch (error) {
+            return next(error);
+        }
+        res.json(user);
+    },
+
+    async unblockUser(req, res, next) {
+        let user;
+        try {
+
+            user = await User.findByIdAndUpdate({ _id: req.params.id }, {
+                is_active: true
+            }, { new: true })
+
+        } catch (error) {
+            return next(error);
+        }
+        res.json(user);
+    },
 }
 
 export default userController;

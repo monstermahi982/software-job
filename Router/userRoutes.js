@@ -16,6 +16,10 @@ router.post('/login', userController.userLogin);
 
 router.put('/:id', userController.updateUser);
 
+router.put('/block/:id', userController.blockUser);
+
+router.put('/unblock/:id', userController.unblockUser);
+
 router.delete('/:id', auth, userController.deleteUser);
 
 export default router;
