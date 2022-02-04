@@ -1,0 +1,22 @@
+<div class="container">
+    <!-- <h2>refiose</h2> -->
+    <div class="block">
+        <h2 class="title">Login</h2>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your email</mat-label>
+            <input matInput [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your Passowrd</mat-label>
+            <input matInput [formControl]="password" type="password" required>
+            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div class="button-div">
+            <a routerLink="/company/register"><button mat-button color="primary">Not have a Account..
+                    <strong>Register</strong></button></a>
+            <button mat-raised-button color="accent">Submit</button>
+        </div>
+    </div>
+</div>
