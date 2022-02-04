@@ -1,0 +1,22 @@
+mat-grid-tile {
+    background: lightblue;
+}
+
+mat-grid-tile {
+    margin: 10px 0;
+    padding: 50px 0;
+}
+
+mat-card {
+    width: 100%;
+    height: 100%;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container {
+    margin: 20px 30px;
+}
