@@ -1,0 +1,33 @@
+<div class="container">
+    <!-- <h2>refiose</h2> -->
+    <div class="block">
+        <h2 class="title">Register</h2>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your Name</mat-label>
+            <input matInput [formControl]="name" required>
+            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your email</mat-label>
+            <input matInput [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your Phone</mat-label>
+            <input matInput [formControl]="phone" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="re-form">
+            <mat-label>Enter your Passowrd</mat-label>
+            <input matInput [formControl]="password" type="password" required>
+            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div class="button-div">
+            <a routerLink="/user/login"><button mat-button color="primary">Already hava a account..
+                    <strong>Login</strong></button></a>
+            <button mat-raised-button color="accent">Submit</button>
+        </div>
+    </div>
+</div>
