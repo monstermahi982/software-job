@@ -27,7 +27,7 @@ export class JobService {
     
     const data: any = {
       user_id,
-      job_id: jobData._id,
+      job_id: jobData.job_id,
       company_id: jobData.company_id
     }
     console.log(data);
