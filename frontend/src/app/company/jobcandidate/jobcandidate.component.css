@@ -1,0 +1,13 @@
+table {
+    width: 50%;
+    margin: 10px 20px;
+}
+
+mat-card {
+    margin: 20px 40px;
+    width: 20%;
+}
+
+h1 {
+    text-align: center;
+}
