@@ -9,6 +9,7 @@ import {PostsComponent} from './company/posts/posts.component';
 import {AddPostComponent} from './company/add-post/add-post.component';
 import { DashboardComponent as CompanyDashboardComponent } from './company/dashboard/dashboard.component';
 import {JobsComponent} from './jobs/jobs.component';
+import {JobcandidateComponent} from './company/jobcandidate/jobcandidate.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path:"company/add-post",
     component:AddPostComponent
+  },
+  {
+    path:"company/post/:id",
+    component:JobcandidateComponent
   },
   {
     path:"",
