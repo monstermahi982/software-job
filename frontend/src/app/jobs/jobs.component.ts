@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {JobService} from '../job.service'
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs',
@@ -10,7 +12,7 @@ export class JobsComponent implements OnInit {
 
   data: any = [];
 
-  constructor(private jobs: JobService) { }
+  constructor(private jobs: JobService, private cookie: CookieService, private router: Router) { }
 
   ngOnInit(): void {
     
@@ -24,9 +26,18 @@ export class JobsComponent implements OnInit {
 
   jobApply(data: any){
     console.log(data._id);
-    this.jobs.applyJob(data).subscribe((data) => {
+    const token = this.cookie.check('token');
+    console.log(token);
+    
+    if(!token){
+      alert("please login first");
+      this.router.navigate(['/', 'user', 'login']);
+      return;
+    }
+      this.jobs.applyJob(data).subscribe((data) => {
       console.log(data);
-      
+      alert("job applied");
+
     })
   }
 
