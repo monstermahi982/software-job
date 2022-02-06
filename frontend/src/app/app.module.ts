@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {HttpClientModule} from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 import { UsersModule } from './users/users.module';
 import { CompanyModule } from './company/company.module';
@@ -66,6 +68,7 @@ import { JobsComponent } from './jobs/jobs.component';
     JobsComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     UsersModule,
@@ -121,7 +124,7 @@ import { JobsComponent } from './jobs/jobs.component';
   exports:[
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
