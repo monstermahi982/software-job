@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {CompanyService} from '../../company.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+
 export interface Tile {
   color: string;
   cols: number;
@@ -12,7 +17,31 @@ export interface Tile {
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  companyDeatil: any = {};
+  data: any = [];
+  helper = new JwtHelperService();
+  token = "";
+  tokenData: any = {};
+
+  constructor( private company: CompanyService, private cookie: CookieService, private router: Router ) {
+
+    if(!this.cookie.get('token')){
+      this.router.navigate(['/', 'company', 'login']);
+      return; 
+    }
+
+    this.token = JSON.parse(this.cookie.get('token'));
+    // console.log(this.token);
+  
+    this.tokenData =  this.helper.decodeToken(this.token);
+    // console.log(this.tokenData.id);
+
+      company.getCompanyDetail(this.tokenData.id).subscribe(data => {
+        this.companyDeatil = data;
+        console.log(this.companyDeatil);
+        
+      })
+   }
 
   ngOnInit(): void {
   }
@@ -22,5 +51,6 @@ export class DashboardComponent implements OnInit {
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
+
 
 }
