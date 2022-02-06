@@ -1,46 +1,31 @@
 <div class="container">
     <mat-grid-list cols="4" rowHeight="2:1">
-        <mat-grid-tile>
+        <mat-grid-tile *ngFor="let item of jobs">
             <mat-card>
                 <mat-card-title-group>
-                    <mat-card-title>Reactjs Developer</mat-card-title>
-                    <mat-card-subtitle align="right">Work From Home</mat-card-subtitle>
+                    <mat-card-title>{{ item.name }}</mat-card-title>
+                    <mat-card-subtitle align="right">{{ item.work_type }}</mat-card-subtitle>
                 </mat-card-title-group>
                 <mat-card-actions>
                     <button mat-button>
-                        <mat-icon color="primaryw">attach_money</mat-icon> 20,000
+                        <mat-icon color="primaryw">attach_money</mat-icon> {{ item.salary }}
                     </button>
                     <button mat-button>
-                        <mat-icon color="primaryw">access_time</mat-icon> 3 years
+                        <mat-icon color="primaryw">access_time</mat-icon> {{ item.experience }} years
                     </button>
                 </mat-card-actions>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary">Applied Candicates</button>
-                    <button mat-button color="primary">Block</button>
-                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card>
-                <mat-card-title-group>
-                    <mat-card-title>Reactjs Developer</mat-card-title>
-                    <mat-card-subtitle align="right">Work From Home</mat-card-subtitle>
-                </mat-card-title-group>
-                <mat-card-actions>
-                    <button mat-button>
-                        <mat-icon color="primaryw">attach_money</mat-icon> 20,000
-                    </button>
-                    <button mat-button>
-                        <mat-icon color="primaryw">access_time</mat-icon> 3 years
-                    </button>
-                </mat-card-actions>
-                <mat-card-actions>
-                    <button mat-raised-button color="primary">Applied Candicates</button>
-                    <button mat-button color="primary">Block</button>
-                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                    <button mat-raised-button (click)="getPostCand(item._id)" color="primary">Applied
+                        Candicates</button>
+                    <div *ngIf="item.is_active; else unblock">
+                        <button mat-button color="primary" (click)="blockJob(item._id)">Block</button>
+                    </div>
+                    <ng-template #unblock>
+                        <button mat-button color="primary" (click)="unblockjob(item._id)">Unblock</button>
+                    </ng-template>
+
+                    <button mat-icon-button color="warn" (click)="deleteJOb(item._id)"
+                        aria-label="Example icon-button with a heart icon">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card-actions>
