@@ -17,7 +17,7 @@ db.once('open', () => {
     console.log('DB is connected');
 })
 
-app.use(cors({ origin: [] }))
+app.use(cors({ origin: ['http://localhost:4200'] }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
