@@ -2,9 +2,14 @@
     <mat-toolbar-row>
         <a routerLink="/" id="header-title"><span>Software Jobs</span></a>
         <span class="example-spacer"></span>
-        <button mat-raised-button color="primary" class="tabs">Company</button>
-        <button mat-raised-button color="primary" class="tabs">Users</button>
-        <button mat-button color="warn" class="tabs">maheshgaikwad@gmail.com</button>
-        <button mat-raised-button color="primary" class="tabs">Logout</button>
+
+        <div>
+            <a routerLink="company"><button mat-raised-button color="primary" class="tabs">Company</button></a>
+            <a routerLink="user"><button mat-raised-button color="primary" class="tabs">Users</button></a>
+        </div>
+        <div *ngIf="loggedin()">
+            <button mat-button color="warn" class="tabs">{{userName}}</button>
+            <button mat-raised-button color="primary" (click)="logout()" class="tabs">Logout</button>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
