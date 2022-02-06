@@ -52,6 +52,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { JobcandidateComponent } from './jobcandidate/jobcandidate.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RegisterComponent,
     DashboardComponent,
     PostsComponent,
-    AddPostComponent
+    AddPostComponent,
+    JobcandidateComponent
   ],
   imports: [
     RouterModule,
@@ -111,14 +113,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     PortalModule,
     ScrollingModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
     PostsComponent,
-    AddPostComponent
+    AddPostComponent,
+    JobcandidateComponent
   ]
 })
 export class CompanyModule { }
