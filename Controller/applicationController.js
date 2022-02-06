@@ -46,7 +46,10 @@ const applicationController = {
         try {
 
             const appl = await Application.find({ job_id: req.params.id });
-
+            console.log(appl);
+            if (appl.length === 0) {
+                return res.json("no users has applied");
+            }
             const { job_id, status, createdAt } = appl[0];
             const job = await Job.findById({ _id: job_id }).select('-updatedAt -__v -createdAt');
 
@@ -123,17 +126,17 @@ const applicationController = {
 
     async deleteApplication(req, res, next) {
 
-        let company;
+        let application;
 
         try {
 
-            company = await Company.findOneAndDelete({ _id: req.params.id });
+            application = await Application.findOneAndDelete({ _id: req.params.id });
 
         } catch (error) {
             return next(error);
         }
 
-        res.json(company);
+        res.json(application);
     },
 }
 
