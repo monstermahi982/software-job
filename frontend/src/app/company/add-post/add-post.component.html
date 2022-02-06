@@ -2,34 +2,33 @@
     <!-- <h2>refiose</h2> -->
     <div class="block">
         <h2 class="title">New Job Post</h2>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Job Title</mat-label>
-            <input matInput [formControl]="title" required>
-            <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Employee Experience</mat-label>
-            <input matInput [formControl]="expereice" type="number" required>
-            <mat-error *ngIf="expereice.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Salary</mat-label>
-            <input matInput [formControl]="salary" type="number" required>
-            <mat-error *ngIf="salary.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Select an option</mat-label>
-            <mat-select [(value)]="work_type">
-                <mat-option value="home">Work from Home</mat-option>
-                <mat-option value="office">Work from Office</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div class="button-div">
-            <a routerLink="/company/login"><button mat-button color="primary">Already hava a account..
-                    <strong>Login</strong></button></a>
-            <button mat-raised-button color="accent">Submit</button>
-        </div>
+        <form #jobPost="ngForm" (ngSubmit)="addJobPost(jobPost.value)">
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Job Title</mat-label>
+                <input matInput ngModel name="name" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Employee Experience</mat-label>
+                <input matInput ngModel name="experience" type="number" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Salary</mat-label>
+                <input matInput ngModel name="salary" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Select an option</mat-label>
+                <mat-select ngModel name="work_type">
+                    <mat-option value="home">Work from Home</mat-option>
+                    <mat-option value="office">Work from Office</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="button-div">
+                <a routerLink="/company/login"><button mat-button color="primary">Already hava a account..
+                        <strong>Login</strong></button></a>
+                <button mat-raised-button color="accent">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
