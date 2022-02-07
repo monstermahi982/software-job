@@ -29,6 +29,13 @@ export class JobsComponent implements OnInit {
     const token = this.cookie.check('token');
     console.log(token);
     
+    const company = this.cookie.check('company');
+    const user = this.cookie.check('user');
+    if(company || !user){
+      alert("you cannot apply");
+      return;
+    }
+
     if(!token){
       alert("please login first");
       this.router.navigate(['/', 'user', 'login']);
