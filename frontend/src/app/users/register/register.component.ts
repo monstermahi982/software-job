@@ -15,7 +15,12 @@ export class RegisterComponent implements OnInit {
   helper = new JwtHelperService();
   tokenData: any = {};
 
-  constructor(private user:UserService, private router: Router, private cookie: CookieService) { }
+  constructor(private user:UserService, private router: Router, private cookie: CookieService) { 
+    if(cookie.check('company') === true){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'company']);
+    }
+  }
 
   ngOnInit(): void {
 
@@ -26,19 +31,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  name = new FormControl('', [Validators.required]);
-  phone = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
   getRegData(data: any){
     console.log(data);
     this.user.userReg(data).subscribe((data) => {
@@ -46,6 +38,7 @@ export class RegisterComponent implements OnInit {
       this.tokenData = this.helper.decodeToken(JSON.parse(JSON.stringify(data)));
       this.cookie.set('name', this.tokenData.name);
       this.cookie.set('token', JSON.stringify(data));
+      this.cookie.set('user', 'true');
       this.router.navigate(['/', 'user']);
       
     })

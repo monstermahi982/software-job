@@ -15,7 +15,10 @@ export class MyJobsComponent implements OnInit {
   helper = new JwtHelperService();
 
   constructor(private user: UserService, private cookie: CookieService, private router: Router) { 
-    
+    if(cookie.check('company') === true){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'company']);
+    }
   }
 
   token = "";
