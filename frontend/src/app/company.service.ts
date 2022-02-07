@@ -53,4 +53,9 @@ export class CompanyService {
     return this.http.get(url);
   }
 
+  registerCompany(data: any){
+    let url = `http://localhost:5000/api/company`;
+    return this.http.post(url, data);
+  }
+
 }
