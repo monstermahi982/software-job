@@ -1,6 +1,6 @@
 # Software Jobs
 
-## \_The Backned Project
+## MEAN Stack Project
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -28,6 +28,8 @@ Dillinger uses a number of open source projects to work properly:
 - [JOI] - libary for data validations.
 - [JWT] - for token based authentication.
 - [Express] - fast node.js network app framework
+- [Angular] - SPA framework
+- [Angular Material] - CSS framework
 
 ## Installation
 
@@ -35,9 +37,20 @@ Node requires [Node.js](https://nodejs.org/) v10+ to run.
 
 Install the dependencies and devDependencies and start the server.
 
+For Backend :-
+
 ```sh
 git clone https://github.com/monstermahi982/software-job.git
 cd software-job
+npm install
+npm run dev
+```
+
+For Frontend :-
+
+```sh
+git clone https://github.com/monstermahi982/software-job.git
+cd software-job/frontend
 npm install
 npm run dev
 ```
@@ -99,3 +112,5 @@ npm run dev
 [jwt]: https://jwt.io/
 [express]: http://expressjs.com
 [angularjs]: http://angularjs.org
+[angular]: https://angular.io/
+[angular material]: http://angularjs.org
