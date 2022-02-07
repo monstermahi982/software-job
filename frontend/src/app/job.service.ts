@@ -11,9 +11,16 @@ export class JobService {
 
   constructor(private http:HttpClient, private cookie: CookieService) { }
 
-  getAllPosts(){
-    let url = "http://localhost:5000/api/jobs/search";
+  getAllPosts(page: number){
+    console.log(page);
+    
+    let url = `http://localhost:5000/api/jobs/search?page=${page}`;
     return this.http.get(url);
+  }
+
+  getJobLength(){
+    let url = "http://localhost:5000/api/jobs/length";
+    return this.http.get(url);    
   }
 
   applyJob(jobData: any){

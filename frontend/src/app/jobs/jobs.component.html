@@ -37,4 +37,8 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
+    <p>------------------------------------------------------------------</p>
+    <mat-paginator [length]="dataLength" (page)="pageEvent($event)" [pageSize]="5" [pageSizeOptions]="[5]"
+        aria-label="Select page">
+    </mat-paginator>
 </div>

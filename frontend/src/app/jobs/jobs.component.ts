@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {JobService} from '../job.service'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-jobs',
@@ -11,12 +12,19 @@ import { Router } from '@angular/router';
 export class JobsComponent implements OnInit {
 
   data: any = [];
+  dataLength: number = 0;
 
   constructor(private jobs: JobService, private cookie: CookieService, private router: Router) { }
 
   ngOnInit(): void {
     
-    this.jobs.getAllPosts().subscribe(data => {
+    this.jobs.getJobLength().subscribe((data: any) => {
+      console.log(data);
+      this.dataLength = data;
+      
+    })
+
+    this.jobs.getAllPosts(1).subscribe(data => {
       this.data = data;
       console.log(data);
       
@@ -47,6 +55,17 @@ export class JobsComponent implements OnInit {
       alert("job applied");
 
     })
+  }
+
+  pageEvent(data: any){
+    console.log(data);
+    this.jobs.getAllPosts(data.pageIndex + 1).subscribe(data => {
+      this.data = data;
+      console.log(data);
+      // this.dataLength = Object.keys(data).length;
+      
+    })
+    
   }
 
 
