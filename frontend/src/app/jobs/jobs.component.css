@@ -17,6 +17,12 @@ mat-card-actions {
     justify-content: space-evenly;
 }
 
+mat-paginator {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
 .container {
     margin: 20px 30px;
 }
