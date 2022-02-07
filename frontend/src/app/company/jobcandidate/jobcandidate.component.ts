@@ -32,7 +32,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class JobcandidateComponent implements OnInit {
   id: any = "";
   data: any = {};
-  constructor(private company: CompanyService, private router: Router, private cookie: CookieService, private route:ActivatedRoute) { }
+  constructor(private company: CompanyService, private router: Router, private cookie: CookieService, private route:ActivatedRoute) {
+    if(cookie.check('user') === true){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'user']);
+    }
+   }
 
   ngOnInit(): void {
 

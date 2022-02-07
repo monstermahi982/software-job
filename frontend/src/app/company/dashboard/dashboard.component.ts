@@ -30,6 +30,11 @@ export class DashboardComponent implements OnInit {
       return; 
     }
 
+    if(cookie.check('user') === true){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'user']);
+    }
+
     this.token = JSON.parse(this.cookie.get('token'));
     // console.log(this.token);
   

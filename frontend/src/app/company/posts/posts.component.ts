@@ -16,7 +16,12 @@ export class PostsComponent implements OnInit {
   tokenData: any = {};
   helper = new JwtHelperService();
 
-  constructor(private company: CompanyService, private router: Router, private cookie: CookieService) { }
+  constructor(private company: CompanyService, private router: Router, private cookie: CookieService) { 
+    if(cookie.check('company') === false){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'user']);
+    }
+   }
 
   ngOnInit(): void {
     this.getCompanyJob();

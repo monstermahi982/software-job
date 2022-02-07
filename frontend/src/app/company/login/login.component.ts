@@ -15,7 +15,12 @@ export class LoginComponent implements OnInit {
   helper = new JwtHelperService();
   tokenData: any = {};
 
-  constructor(private company: CompanyService, private router: Router, private cookie: CookieService) { }
+  constructor(private company: CompanyService, private router: Router, private cookie: CookieService) { 
+    if(cookie.check('user') === true){
+      alert("you cannot able to access this page");
+      router.navigate(['/', 'user']);
+    }
+   }
 
   ngOnInit(): void {
   }
@@ -38,6 +43,7 @@ export class LoginComponent implements OnInit {
       this.tokenData = this.helper.decodeToken(JSON.parse(JSON.stringify(data)));
       this.cookie.set('name', this.tokenData.name);
       this.cookie.set('token', JSON.stringify(data));
+      this.cookie.set('company', 'true');
       this.router.navigate(['/', 'company']);
       
     }) 
