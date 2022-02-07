@@ -29,6 +29,12 @@ export class JobsComponent implements OnInit {
     const token = this.cookie.check('token');
     console.log(token);
     
+    if(!token){
+      alert("please login first");
+      this.router.navigate(['/', 'user', 'login']);
+      return;
+    }
+    
     const company = this.cookie.check('company');
     const user = this.cookie.check('user');
     if(company || !user){
@@ -36,11 +42,6 @@ export class JobsComponent implements OnInit {
       return;
     }
 
-    if(!token){
-      alert("please login first");
-      this.router.navigate(['/', 'user', 'login']);
-      return;
-    }
       this.jobs.applyJob(data).subscribe((data) => {
       console.log(data);
       alert("job applied");
