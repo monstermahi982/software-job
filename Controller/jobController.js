@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Job } from '../Model';
+import { Job, Company } from '../Model';
 
 const jobController = {
 
@@ -84,12 +84,37 @@ const jobController = {
     },
 
     async jobSearch(req, res, next) {
-        let jobs;
+        let jobs = [];
 
         try {
 
             if (Object.keys(req.query).length === 0) {
-                jobs = await Job.find();
+                const data = await Job.find();
+
+                for (let i = 0; i < data.length; i++) {
+
+                    const { company_id } = data[i];
+                    // console.log(company_id);
+
+                    const comp = await Company.findById({ _id: company_id });
+                    // console.log(data[0], "----------sd");
+                    const Onejob = {
+                        jobTitile: data[i].name,
+                        salary: data[i].salary,
+                        experience: data[i].experience,
+                        work_type: data[i].work_type,
+                        job_id: data[i]._id,
+                        company_id: data[i].company_id,
+                        is_active: data[i].is_active,
+                        company_name: comp.name,
+                        company_location: comp.location,
+                        company_domain: comp.domain
+                    }
+
+                    // console.log(Onejob);
+                    jobs.push(Onejob);
+                }
+
             } else {
                 jobs = await Job.find({ name: { $regex: req.query.name } });
             }
