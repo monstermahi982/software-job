@@ -7,6 +7,8 @@ router.get('/', jobController.getAllJobs);
 
 router.get('/search', jobController.jobSearch);
 
+router.get('/length', jobController.jobArrayLength);
+
 router.get('/:id', jobController.getOneJob);
 
 router.post('/', jobController.addJob);
