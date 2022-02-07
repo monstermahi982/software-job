@@ -2,54 +2,50 @@
     <!-- <h2>refiose</h2> -->
     <div class="block">
         <h2 class="title">Register</h2>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your Name</mat-label>
-            <input matInput [formControl]="name" required>
-            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your email</mat-label>
-            <input matInput [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your Phone</mat-label>
-            <input matInput [formControl]="phone" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your Passowrd</mat-label>
-            <input matInput [formControl]="password" type="password" required>
-            <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your Address</mat-label>
-            <input matInput [formControl]="location" required>
-            <mat-error *ngIf="location.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Select an option</mat-label>
-            <mat-select [(value)]="selected">
-                <mat-option>None</mat-option>
-                <mat-option value="media">Media</mat-option>
-                <mat-option value="automobile">Auto Mobile</mat-option>
-                <mat-option value="healthcare">Health Care</mat-option>
-                <mat-option value="transportation">Transportation</mat-option>
-                <mat-option value="medical">Medical</mat-option>
-                <mat-option value="finance">Finance</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="re-form">
-            <mat-label>Enter your Employee Size</mat-label>
-            <input matInput [formControl]="size" type="password" required>
-            <mat-error *ngIf="size.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <div class="button-div">
-            <a routerLink="/company/login"><button mat-button color="primary">Already hava a account..
-                    <strong>Login</strong></button></a>
-            <button mat-raised-button color="accent">Submit</button>
-        </div>
+        <form #compReg="ngForm" (ngSubmit)="regComp(compReg.value)">
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter Name of Company</mat-label>
+                <input matInput ngModel name="name" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter Email of Company </mat-label>
+                <input matInput type="email" ngModel name="email" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter Phone no. of Company</mat-label>
+                <input matInput type="number" ngModel name="phone" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter Company Location</mat-label>
+                <input matInput ngModel name="location" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Select an option</mat-label>
+                <mat-select ngModel name="domain">
+                    <mat-option>None</mat-option>
+                    <mat-option value="media">Media</mat-option>
+                    <mat-option value="automobile">Auto Mobile</mat-option>
+                    <mat-option value="healthcare">Health Care</mat-option>
+                    <mat-option value="transportation">Transportation</mat-option>
+                    <mat-option value="medical">Medical</mat-option>
+                    <mat-option value="finance">Finance</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter your Employee Size</mat-label>
+                <input matInput type="number" ngModel name="size" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="re-form">
+                <mat-label>Enter your Passowrd</mat-label>
+                <input matInput ngModel name="password" type="password" required>
+            </mat-form-field>
+            <div class="button-div">
+                <a routerLink="/company/login"><button mat-button color="primary">Already hava a account..
+                        <strong>Login</strong></button></a>
+                <button mat-raised-button color="accent">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
