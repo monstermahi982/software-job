@@ -141,14 +141,20 @@ const userController = {
 
             const user = await User.findOne({ email });
 
+            if (!user) {
+                return res.json("email not found");
+            }
+
             if (user) {
                 if (password === user.password) {
                     token = Jwt.sign({ name: user.name, id: user._id })
                 } else {
-                    return res.json({ data: "password not matched" });
+                    return res.json("password not matched");
                 }
-            } else {
-                return res.json({ data: "account not found" });
+            }
+
+            if (!user.is_active) {
+                return res.json("blocked");
             }
 
         } catch (error) {
