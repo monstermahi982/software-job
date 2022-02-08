@@ -10,6 +10,10 @@ import {AddPostComponent} from './company/add-post/add-post.component';
 import { DashboardComponent as CompanyDashboardComponent } from './company/dashboard/dashboard.component';
 import {JobsComponent} from './jobs/jobs.component';
 import {JobcandidateComponent} from './company/jobcandidate/jobcandidate.component';
+import { DasboardComponent as AdminDasboardComponent } from './admin/dasboard/dasboard.component';
+import { CompanyComponent as AdminCompanyComponent} from './admin/company/company.component';
+import { UsersComponent as AdminUsersComponent } from './admin/users/users.component';
+import { JobsComponent as AdminJobsComponent } from './admin/jobs/jobs.component';
 
 
 const routes: Routes = [
@@ -48,6 +52,27 @@ const routes: Routes = [
   {
     path:"company/post/:id",
     component:JobcandidateComponent
+  },
+  {
+    path:'admin',
+    children: [
+      {
+        path:"",
+        component: AdminDasboardComponent
+      },
+      {
+        path: "company",
+        component: AdminCompanyComponent
+      },
+      {
+        path: "users",
+        component: AdminUsersComponent
+      },
+      {
+        path: "jobs",
+        component: AdminJobsComponent
+      }
+    ]
   },
   {
     path:"",
