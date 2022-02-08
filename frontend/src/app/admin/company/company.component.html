@@ -19,13 +19,15 @@
         <td>{{ item.domain }}</td>
         <td>{{ item.size }}</td>
         <td>
-            <button *ngIf="item.is_active; else elseBLock" mat-button color="accent">Block</button>
+            <button *ngIf="item.is_active; else elseBLock" (click)="block(item._id)" mat-button
+                color="accent">Block</button>
             <ng-template #elseBLock>
-                <button mat-button color="primary">Unblock</button>
+                <button mat-button (click)="unblock(item._id)" color="primary">Unblock</button>
             </ng-template>
         </td>
         <td>
-            <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+            <button mat-icon-button color="warn" (click)="delete(item._id)"
+                aria-label="Example icon-button with a heart icon">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

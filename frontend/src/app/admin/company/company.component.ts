@@ -15,12 +15,41 @@ export class CompanyComponent implements OnInit {
   company: any = [];
   ngOnInit(): void {
 
+      this.getCompany();
+
+  }
+
+  getCompany(){
     this.admin.getAllcompany().subscribe(data => {
       console.log(data);
       this.company = data;
       
     })
+  }
 
+  delete(id: string){
+    console.log(id);
+    
+    this.admin.deleteCompany(id).subscribe((data) => {
+      console.log(data);
+      this.getCompany();
+    })
+  }
+
+  block(id: string){
+    console.log(id);
+    this.admin.blockCompany(id).subscribe((data) => {
+      console.log(data);
+      this.getCompany();
+    })
+  }
+
+  unblock(id: string){
+    console.log(id);
+    this.admin.unblockCompany(id).subscribe((data) => {
+      console.log(data);
+      this.getCompany();
+    })
   }
 
 }

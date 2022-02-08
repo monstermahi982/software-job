@@ -15,12 +15,40 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
   
+    this.getUser();
+
+  }
+
+  getUser(){
     this.admin.getAllUsers().subscribe(data => {
       console.log(data);
       this.users = data;
-      
     })
+  }
 
+  deleteUser(id: string){
+    console.log(id);
+    
+    this.admin.deleteUser(id).subscribe((data) => {
+      console.log(data);
+      this.getUser();
+    })
+  }
+
+  block(id: string){
+    console.log(id);
+    this.admin.blockUser(id).subscribe((data) => {
+      console.log(data);
+      this.getUser();
+    })
+  }
+
+  unblock(id: string){
+    console.log(id);
+    this.admin.unblockUser(id).subscribe((data) => {
+      console.log(data);
+      this.getUser();
+    })
   }
 
 }

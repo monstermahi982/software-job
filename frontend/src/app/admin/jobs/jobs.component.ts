@@ -14,12 +14,41 @@ export class JobsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getJobs();
+
+  }
+
+  getJobs(){
     this.admin.getAllJobs().subscribe(data => {
       console.log(data);
       this.jobs = data;
       
     })
+  }
 
+  delete(id: string){
+    console.log(id);
+    
+    this.admin.deleteJob(id).subscribe((data) => {
+      console.log(data);
+      this.getJobs();
+    })
+  }
+
+  block(id: string){
+    console.log(id);
+    this.admin.blockJob(id).subscribe((data) => {
+      console.log(data);
+      this.getJobs();
+    })
+  }
+
+  unblock(id: string){
+    console.log(id);
+    this.admin.unblockJob(id).subscribe((data) => {
+      console.log(data);
+      this.getJobs();
+    })
   }
 
 }
