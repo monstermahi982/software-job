@@ -1,0 +1,30 @@
+<h1>Jobs</h1>
+<table border="1px">
+    <tr>
+        <th>Job Title</th>
+        <th>Experience</th>
+        <th>Salary</th>
+        <th>Work Type</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Date</th>
+    </tr>
+    <tr *ngFor="let item of jobs">
+        <td>{{ item.name }}</td>
+        <td>{{ item.experience }}</td>
+        <td>{{ item.salary }}</td>
+        <td>{{ item.work_type }}</td>
+        <td>
+            <button *ngIf="item.is_active; else elseBLock" mat-button color="accent">Block</button>
+            <ng-template #elseBLock>
+                <button mat-button color="primary">Unblock</button>
+            </ng-template>
+        </td>
+        <td>
+            <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+        <td>{{ item.createdAt }}</td>
+    </tr>
+</table>
