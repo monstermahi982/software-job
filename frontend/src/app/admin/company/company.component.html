@@ -1,0 +1,34 @@
+<h1>Company</h1>
+<table border="1px">
+    <tr>
+        <th>Company Name</th>
+        <th>Company Email</th>
+        <th>Company Phone</th>
+        <th>Company Location</th>
+        <th>Company Domain</th>
+        <th>Company Size</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Date</th>
+    </tr>
+    <tr *ngFor="let item of company">
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.location }}</td>
+        <td>{{ item.domain }}</td>
+        <td>{{ item.size }}</td>
+        <td>
+            <button *ngIf="item.is_active; else elseBLock" mat-button color="accent">Block</button>
+            <ng-template #elseBLock>
+                <button mat-button color="primary">Unblock</button>
+            </ng-template>
+        </td>
+        <td>
+            <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+        <td>{{ item.createdAt }}</td>
+    </tr>
+</table>
