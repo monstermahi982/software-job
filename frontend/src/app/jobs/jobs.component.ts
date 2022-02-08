@@ -51,6 +51,11 @@ export class JobsComponent implements OnInit {
     }
 
       this.jobs.applyJob(data).subscribe((data) => {
+
+        if(data === "already applied"){
+          return alert("already applied");
+        }
+
       console.log(data);
       alert("job applied");
 
