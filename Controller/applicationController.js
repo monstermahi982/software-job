@@ -107,6 +107,17 @@ const applicationController = {
 
         const { user_id, company_id, job_id } = req.body;
 
+        try {
+
+            const data = await Application.exists({ user_id, job_id })
+            if (data) {
+                return res.json("already applied");
+            }
+
+        } catch (error) {
+            return next(error);
+        }
+
         const new_application = new Application({
             user_id, company_id, job_id
         });
