@@ -153,10 +153,14 @@ const companyController = {
                 if (company.password === password) {
                     token = Jwt.sign({ name: company.name, id: company._id });
                 } else {
-                    return res.json({ data: "password not matched" });
+                    return res.json("password not matched");
                 }
             } else {
-                return res.json({ data: "account not found" });
+                return res.json("account not found");
+            }
+
+            if (!company.is_active) {
+                return res.json("blocked");
             }
 
         } catch (error) {
