@@ -38,8 +38,22 @@ export class LoginComponent implements OnInit {
 
   getLoginData(data: any){
     console.log(data);
+
     this.company.companyLogin(data).subscribe((data) => {
       console.log(data);
+      
+      if(data === "account not found"){
+        return alert("Account not Found");
+      }
+
+      if(data === "password not matched"){
+        return alert("Password not matched");
+      }
+
+      if(data === "blocked"){
+        return alert("Your Account is Blocked by ADMIN");
+      }
+
       this.tokenData = this.helper.decodeToken(JSON.parse(JSON.stringify(data)));
       this.cookie.set('name', this.tokenData.name);
       this.cookie.set('token', JSON.stringify(data));
