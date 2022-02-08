@@ -58,6 +58,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { JobsComponent } from './jobs/jobs.component';
+import {AdminModule} from './admin/admin.module';
+
 
 
 @NgModule({
@@ -69,6 +71,7 @@ import { JobsComponent } from './jobs/jobs.component';
   ],
   imports: [
     HttpClientModule,
+    AdminModule,
     BrowserModule,
     AppRoutingModule,
     UsersModule,
