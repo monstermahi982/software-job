@@ -116,7 +116,7 @@ const jobController = {
                 }
 
             } else {
-                const data = await Job.find().skip(req.query.page * 5 - 5).limit(5);
+                const data = await Job.find().sort({ _id: -1 }).skip(req.query.page * 5 - 5).limit(5);
 
                 for (let i = 0; i < data.length; i++) {
 
