@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { User } from '../Model';
+import { User, Application } from '../Model';
 import { Jwt } from '../Service'
 
 const userController = {
@@ -111,7 +111,8 @@ const userController = {
 
         try {
 
-            user = await User.findOneAndDelete({ "_id": req.params.id });
+            user = await User.findOneAndDelete({ _id: req.params.id });
+            await Application.deleteMany({ user_id: req.params.id });
 
         } catch (error) {
             return next(error);

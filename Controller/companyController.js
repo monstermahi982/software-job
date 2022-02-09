@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Company } from '../Model';
+import { Company, Application, Job } from '../Model';
 import { Jwt } from '../Service'
 
 const companyController = {
@@ -120,6 +120,8 @@ const companyController = {
         try {
 
             company = await Company.findOneAndDelete({ _id: req.params.id });
+            await Job.deleteMany({ company_id: req.params.id });
+            await Application.deleteMany({ company_id: req.params.id });
 
         } catch (error) {
             return next(error);
