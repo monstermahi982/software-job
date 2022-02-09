@@ -58,4 +58,9 @@ export class CompanyService {
     return this.http.post(url, data);
   }
 
+  deleteCompany(data: string){
+    let url = `http://localhost:5000/api/company${data}`;
+    return this.http.delete(url);
+  }
+
 }
