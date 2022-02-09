@@ -5,6 +5,7 @@ import { UsersComponent } from './users/users.component';
 import { CompanyComponent } from './company/company.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { BrowserModule } from '@angular/platform-browser'
+import { RouterModule } from '@angular/router';
 
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -60,6 +61,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     JobsComponent
   ],
   imports: [
+    RouterModule,
     // BrowserModule,
     CommonModule,
     BrowserModule,
