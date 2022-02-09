@@ -36,7 +36,8 @@
                     <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                    <button mat-icon-button color="warn" (click)="delete(companyDeatil._id)"
+                        aria-label="Example icon-button with a heart icon">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-card-actions>

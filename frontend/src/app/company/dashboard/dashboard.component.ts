@@ -58,4 +58,11 @@ export class DashboardComponent implements OnInit {
   ];
 
 
+  delete(data: string){
+    this.company.deleteCompany(data).subscribe((data) => {
+      console.log(data);
+      
+    })
+  }
+
 }
