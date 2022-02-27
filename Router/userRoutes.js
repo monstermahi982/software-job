@@ -20,6 +20,6 @@ router.put('/block/:id', userController.blockUser);
 
 router.put('/unblock/:id', userController.unblockUser);
 
-router.delete('/:id', auth, userController.deleteUser);
+router.delete('/:id', userController.deleteUser);
 
 export default router;
