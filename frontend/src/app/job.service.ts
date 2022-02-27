@@ -14,12 +14,12 @@ export class JobService {
   getAllPosts(page: number){
     console.log(page);
     
-    let url = `http://localhost:5000/api/jobs/search?page=${page}`;
+    let url = `https://software-jobs.herokuapp.com/api/jobs/search?page=${page}`;
     return this.http.get(url);
   }
 
   getJobLength(){
-    let url = "http://localhost:5000/api/jobs/length";
+    let url = "https://software-jobs.herokuapp.com/api/jobs/length";
     return this.http.get(url);    
   }
 
@@ -40,7 +40,7 @@ export class JobService {
     console.log(data);
     
 
-    let url = "http://localhost:5000/api/application";
+    let url = "https://software-jobs.herokuapp.com/api/application";
     return this.http.post(url, data);
   }
 

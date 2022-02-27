@@ -9,57 +9,57 @@ export class CompanyService {
   constructor(private http:HttpClient) { }
 
   getJobs(id: string){
-    let url = `http://localhost:5000/api/application/company/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/application/company/${id}`;
     return this.http.get(url);
   }
 
   getCompanyDetail(id: any){
-    let url = `http://localhost:5000/api/company/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/company/${id}`;
     return this.http.get(url);
   }
 
   companyLogin(data: any){
-    let url = "http://localhost:5000/api/company/login";
+    let url = "https://software-jobs.herokuapp.com/api/company/login";
     return this.http.post(url, data);
   }
 
   companyRegister(data: any){
-    let url = "http://localhost:5000/api/company";
+    let url = "https://software-jobs.herokuapp.com/api/company";
     return this.http.post(url, data);
   }
 
   addJob(data: any){
-    let url = "http://localhost:5000/api/jobs";
+    let url = "https://software-jobs.herokuapp.com/api/jobs";
     return this.http.post(url, data);
   }
 
   deleteJob(id: string){
-    let url = `http://localhost:5000/api/jobs/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/jobs/${id}`;
     return this.http.delete(url);
   }
 
   blockJob(id: string){
-    let url = `http://localhost:5000/api/jobs/block/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/jobs/block/${id}`;
     return this.http.put(url, {});
   }
 
   unblockJob(id: string){
-    let url = `http://localhost:5000/api/jobs/unblock/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/jobs/unblock/${id}`;
     return this.http.put(url, {});
   }
 
   getCandidateByPost(id:string){
-    let url = `http://localhost:5000/api/application/job/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/application/job/${id}`;
     return this.http.get(url);
   }
 
   registerCompany(data: any){
-    let url = `http://localhost:5000/api/company`;
+    let url = `https://software-jobs.herokuapp.com/api/company`;
     return this.http.post(url, data);
   }
 
   deleteCompany(data: string){
-    let url = `http://localhost:5000/api/company${data}`;
+    let url = `https://software-jobs.herokuapp.com/api/company${data}`;
     return this.http.delete(url);
   }
 

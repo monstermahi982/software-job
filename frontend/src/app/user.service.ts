@@ -11,22 +11,22 @@ export class UserService {
   getData(id: string){
     console.log(id);
     
-    let url = `http://localhost:5000/api/application/user/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/application/user/${id}`;
     return this.http.get(url);
   }
 
   userLogin(data: any){
-    let url = "http://localhost:5000/api/user/login";
+    let url = "https://software-jobs.herokuapp.com/api/user/login";
     return this.http.post(url, data);
   }
 
   userReg(data: any){
-    let url = "http://localhost:5000/api/user/";
+    let url = "https://software-jobs.herokuapp.com/api/user/";
     return this.http.post(url, data);
   }
 
   deleteApplication(id: string){
-    let url = `http://localhost:5000/api/application/${id}`;
+    let url = `https://software-jobs.herokuapp.com/api/application/${id}`;
     return this.http.delete(url);
   }
 
