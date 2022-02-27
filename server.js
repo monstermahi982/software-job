@@ -28,6 +28,6 @@ app.use('/api/application', applicationRoutes)
 
 app.use(errorHandler)
 
-app.use(express.static('frontend/dist/frontend'))
+app.use(express.static('static'))
 
 app.listen(PORT, () => console.log(`app listen on ${PORT} port`));
