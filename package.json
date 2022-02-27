@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "npm link @angular/cli ",
     "heroku-postbuild": "cd frontend && npm install && ng build",
-    "postinstall": "",
+    "postinstall": "ng build --aot -prod",
     "start": "node -r esm server.js",
     "dev": "nodemon -r esm server.js",
     "build": "ng build",
